@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feliz aniversário, minha gatinha</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f7ede2, #fef6e4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }.container {
+  max-width: 700px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 1s ease;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.step {
+  display: none;
+  margin-top: 20px;
+}
+
+.active {
+  display: block;
+}
+
+button {
+  background-color: #ffb5a7;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #f28482;
+  transform: scale(1.05);
+}
+
+.options button {
+  display: block;
+  margin: 12px auto;
+  width: 80%;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.final-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+.sparkle {
+  font-size: 26px;
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="step0" class="step active">
+      <h1>Feliz aniversário, minha gatinha</h1>
+      <p>Hoje não é só seu aniversário. É mais um capítulo da história que você está escrevendo.</p>
+      <button onclick="nextStep()">Descobrir o que vem agora</button>
+    </div><div id="step1" class="step">
+  <p>Como você tá se sentindo hoje?</p>
+  <div class="options">
+    <button onclick="showMood(1)">Forte como sempre</button>
+    <button onclick="showMood(2)">Um pouco reflexiva, sla :/</button>
+    <button onclick="showMood(3)">Leve e tranquila</button>
+    <button onclick="showMood(4)">Cheia de sentimento hoje</button>
+  </div>
+</div>
+
+<div id="step2" class="step">
+  <p id="moodText"></p>
+  <button onclick="nextStep()">Continuar</button>
+</div>
+
+<div id="step3" class="step">
+  <p>Como você cuida de alguém importante?</p>
+  <div class="options">
+    <button onclick="showCare('cobertor')">Cobertorzinho</button>
+    <button onclick="showCare('cacto')">Cacto</button>
+    <button onclick="showCare('espelho')">Espelho</button>
+  </div>
+  <p id="careText"></p>
+  <button id="continueAfterCare" style="display:none;" onclick="nextStep()">Quero que você seja feliz</button>
+</div>
+
+<div id="step4" class="step">
+  <div class="final-card">
+    <p>Xu, eu agradeço todos os dias por ter você na minha vida. Sou a pessoa mais sortuda por ter você como amiga.</p>
+    <p>Obrigada por ser tão companheira e tão incrível sempre.</p>
+    <button onclick="nextStep()">Final</button>
+  </div>
+</div>
+
+<div id="step5" class="step">
+  <div class="final-card">
+    <h2>Feliz aniversário, minha gatinha</h2>
+    <p>Você é maravilhosa</p>
+    <div class="sparkle">🎂</div>
+    <p style="margin-top: 15px;">Tô com você, sempre.</p>
+  </div>
+</div>
+
+  </div>  <script>
+    let step = 0;
+
+    function nextStep() {
+      document.getElementById(`step${step}`).classList.remove("active");
+      step++;
+      document.getElementById(`step${step}`).classList.add("active");
+    }
+
+    function showMood(id) {
+      const moods = {
+        1: "Mesmo nos dias difíceis, você mostra uma força que inspira. E isso é tão você, Daya.",
+        2: "Tem dias que a gente só sente mais. E isso, Daya, é uma das suas belezas: sentir intensamente e ainda assim seguir sendo forte.",
+        3: "Se hoje tá tudo mais calmo, aproveita esse sossego. Você também merece leveza.",
+        4: "Quando o coração transborda, é sinal de que ele tá vivo. E o seu é tão bonito no que sente."
+      };
+      document.getElementById("moodText").innerText = moods[id];
+      nextStep();
+    }
+
+    function showCare(option) {
+      const careTexts = {
+        cobertor: "Tem vezes que tudo que a gente pode fazer por alguém é estar ali — até quando não dá pra aquecer tudo, só cobrir um cantinho.",
+        cacto: "Às vezes, cuidar é dar espaço também. Mesmo quem tem espinho floresce quando é respeitado.",
+        espelho: "A gente pode até tentar ajudar, mas no fim, cada um precisa se ver e se reconhecer. E eu quero estar por perto quando você se encontrar."
+      };
+      document.getElementById("careText").innerText = careTexts[option];
+      document.getElementById("continueAfterCare").style.display = "inline-block";
+    }
+  </script></body>
+</html>
